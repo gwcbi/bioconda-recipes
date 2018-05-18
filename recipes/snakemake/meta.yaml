@@ -1,4 +1,4 @@
-{% set version = "3.13.0" %}
+{% set version = "5.0.0" %}
 
 package:
   name: snakemake
@@ -7,10 +7,10 @@ package:
 source:
   fn: snakemake-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/s/snakemake/snakemake-{{ version }}.tar.gz
-  sha256: 53515250568c95fd9971c88db6b181fef6718afa5ed90d97fd83905977197fb0
+  sha256: 939f73c9c0e0334885f1a902eaf2a8bc9767964ed72abdfe7509491dc638fb3b
 
 build:
-  number: 1
+  number: 0
   skip: True # [py27]
   script: python setup.py install --single-version-externally-managed --record record.txt
   entry_points:
@@ -23,20 +23,35 @@ requirements:
     - setuptools
     - wrapt
     - requests
+    - ratelimiter
+    - configargparse
+    - appdirs
+    - datrie
   run:
     - python
     - wrapt
     - requests
     - docutils
     - pyyaml
+    - datrie
     - requests >=2.8.1
-    - dropbox >=5.2
+    # require this dropbox version to ensure that a conda doesn't pick up the
+    # outdated version available
+    - dropbox >=7.2.1
     - ftputil >=3.2
     - filechunkio >=1.6
     - pysftp >=0.2.8
     - psutil
+    - aioeasywebdav
     # pandas is optional, but required for many workflows
     - pandas
+    - ratelimiter
+    - configargparse
+    - appdirs
+    - python-irodsclient
+    - google-cloud-storage
+    - boto3
+    - aioeasywebdav
 
 test:
     imports:
@@ -49,3 +64,8 @@ about:
   home: https://snakemake.readthedocs.io
   license: MIT
   summary: Snakemake is a workflow management system that aims to reduce the complexity of creating workflows by providing a fast and comfortable execution environment, together with a clean and modern specification language in python style. Snakemake workflows are essentially Python scripts extended by declarative code to define rules. Rules describe how to create output files from input files.
+
+extra:
+  identifiers:
+    - doi:10.1093/bioinformatics/bts480
+    - biotools:Snakemake

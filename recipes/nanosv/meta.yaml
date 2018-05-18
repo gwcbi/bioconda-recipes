@@ -1,0 +1,43 @@
+{% set version = "1.1.2" %}
+
+package:
+  name: nanosv
+  version: {{ version }}
+
+source:
+  fn: NanoSV-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/n/nanosv/NanoSV-{{ version }}.tar.gz
+  sha256: ba51c4ce9604bd63d72fb237c8c662cd5b64e0d5ac8fbd06aa82d2e30fcc59f4
+
+build:
+  number: 0
+  skip: True  # [py27]
+  entry_points:
+    - NanoSV=nanosv.NanoSV:main
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - pysam
+    - pyvcf
+    - configparser  # [py27]
+
+  run:
+    - python
+    - pysam
+    - pyvcf
+    - configparser  # [py27]
+
+test:
+  commands:
+    - NanoSV --help
+
+about:
+  home: https://github.com/mroosmalen/nanosv
+  license: MIT License
+  license_family: MIT
+  summary: Structural variation detection tool for Oxford Nanopore data.
+
+extra:
+  recipe-maintainers: 'wdecoster'

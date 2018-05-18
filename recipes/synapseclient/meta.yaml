@@ -1,4 +1,4 @@
-{% set version="1.6.2" %}
+{% set version="1.7.5" %}
 
 package:
   name: synapseclient
@@ -7,7 +7,7 @@ package:
 source:
   fn: synapseclient-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/s/synapseclient/synapseclient-{{ version }}.tar.gz
-  md5: ab858692cfdb77954903d6eb8f39b406
+  md5: f55e1b85e8e4f02105296c75f0f563c0
 
 build:
   skip: False

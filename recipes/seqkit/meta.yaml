@@ -1,4 +1,4 @@
-{% set version = "0.5.5" %}
+{% set version = "0.8.0" %}
 
 package:
   name: seqkit
@@ -10,23 +10,26 @@ about:
   license: MIT
 
 build:
-  number: 0
+  number: 1
   skip: False
 
 source:
   fn: seqkit_{{ version }}_osx.tar.gz # [osx]
   url: https://github.com/shenwei356/seqkit/releases/download/v{{ version }}/seqkit_darwin_amd64.tar.gz # [osx]
-  md5: 57b83d19180832aaa3d4ee233bfff6cd # [osx]
+  md5: 0548f3eaf0ccc3d8b300464a69319f1c # [osx]
 
   fn: seqkit_{{ version }}_linux.tar.gz # [linux]
   url: https://github.com/shenwei356/seqkit/releases/download/v{{ version }}/seqkit_linux_386.tar.gz # [linux]
-  md5: 4020d3de2a23a0cc27bd83b84dc9cf77 # [linux]
+  md5: d089bf58af31fe8335f2f2b3702d4697 # [linux]
 
   fn: seqkit_{{ version }}_linux64.tar.gz # [linux64]
   url: https://github.com/shenwei356/seqkit/releases/download/v{{ version }}/seqkit_linux_amd64.tar.gz # [linux64]
-  md5: f9ffae23e980af96f1b6dcd7850dcbfa # [linux64]
+  md5: 2536f9f9460036fbde6e7f85d2879123 # [linux64]
+
+requirements:
+  run:
+    - pigz
 
 test:
   commands:
     - seqkit version --help
-

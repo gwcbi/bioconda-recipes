@@ -1,0 +1,33 @@
+{% set name = "minimap2" %}
+{% set version = "2.10" %}
+{% set hash = "3cb8e32afefbe0c30c0211879987fd4e25909330e0b331734ec407a004254901" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/lh3/minimap2/archive/v{{ version }}.tar.gz
+  fn: {{ name|lower }}_{{ version }}.tar.gz
+  sha256: {{ hash }}
+
+build:
+    number: 1
+
+requirements:
+    build:
+        - gcc
+        - zlib {{ CONDA_ZLIB }}*
+
+    run:
+        - libgcc
+        - zlib {{ CONDA_ZLIB }}*
+test:
+  commands:
+    - minimap2 2>&1 | grep 'Usage'
+
+about:
+  home: https://github.com/lh3/minimap2
+  license: MIT
+  license_file: LICENSE.txt
+  summary: 'A versatile pairwise aligner for genomic and spliced nucleotide sequences.'

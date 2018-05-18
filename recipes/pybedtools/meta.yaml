@@ -8,7 +8,7 @@ source:
   md5: f003c67e22c48b77f070538368ece70c
 
 build:
-  number: 0
+  number: 2
 
 requirements:
   build:
@@ -20,21 +20,28 @@ requirements:
     - cython
     - gcc  # [linux]
     - llvm # [osx]
-    - zlib
+    - zlib {{CONDA_ZLIB}}*
 
   run:
     - python
+    - bedtools
     - six
     - pysam >=0.8.1
     - pandas
+    - libgcc # [linux]
+    - zlib {{CONDA_ZLIB}}*
 
 test:
   imports:
     - pybedtools
   commands:
-    - python -c "import pybedtools; help(pybedtools.BedTool.intersect)"
+    - python -c "import pybedtools; help(pybedtools.BedTool.intersect)" | grep "Original BEDTools help"
 
 about:
   home: https://github.com/daler/pybedtools
   license: MIT
   summary: Wraps BEDTools for use in Python and adds many additional features.
+
+extra:
+  identifiers:
+    - biotools:pybedtools

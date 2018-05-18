@@ -1,6 +1,6 @@
 package:
   name: whatshap
-  version: "0.13"
+  version: "0.15"
 
 about:
   home: https://whatshap.readthedocs.io/
@@ -8,35 +8,38 @@ about:
   summary: 'phase genomic variants using DNA sequencing reads (haplotype assembly)'
 
 source:
-  fn: whatshap-0.13.tar.gz
-  url: https://pypi.python.org/packages/e2/f3/c71cb4bc3ba3b1234ee0c5fe729c60440164e07437695ca09c61750e0e11/whatshap-0.13.tar.gz
-  md5: 6c9c8b7d6138b60a5a070f0de59f576f
+  fn: whatshap-0.15.tar.gz
+  url: https://pypi.python.org/packages/ca/13/6454e5e8f6c858a203378b3e22f13518f092ba85aa6d7a9a9796d22c28e0/whatshap-0.15.tar.gz
+  md5: b3f2cdda61f0fcaaeb88769effc19ee5
 
 requirements:
-  # To do: Pinnng of the setuptools version is a workaround. Try to remove it.
   build:
     - gcc
     - python
     - setuptools
-    - pysam <0.9.0
+    - pysam >=0.14
     - pyvcf
     - pyfaidx
     - xopen
   run:
     - libgcc
     - python
-    - setuptools
-    - pysam <0.9.0
+    - pysam >=0.14
     - pyvcf
     - pyfaidx
     - xopen
 
 build:
   skip: True  # [not py3k]
-  script: python3 setup.py install
+  script: $PYTHON setup.py install --single-version-externally-managed --record=record.txt
 
 test:
   imports:
     - whatshap
   commands:
     - whatshap --help > /dev/null
+
+extra:
+  identifiers:
+    - biotools:whatshap
+    - doi:10.1089/cmb.2014.0157

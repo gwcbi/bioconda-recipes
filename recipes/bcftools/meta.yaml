@@ -1,4 +1,4 @@
-{% set version="1.4.1" %}
+{% set version="1.8" %}
 about:
   home: https://github.com/samtools/bcftools
   license: MIT
@@ -10,31 +10,43 @@ about:
     VCF and BCF and streams will work in most, but not all situations.
 
 build:
-  number: 0
+  number: 1
 package:
   name: bcftools
   version: {{ version }}
 requirements:
   build:
-  - gcc  # [not osx]
-  - llvm # [osx]
-  - gcc
-  - zlib
-  - bzip2
-  - curl
-  - xz
+    - gcc  # [not osx]
+    - llvm # [osx]
+    - bzip2 {{CONDA_BZIP2}}*
+    - curl
+    - xz {{CONDA_XZ}}*
+    - zlib {{CONDA_ZLIB}}*
+    - libdeflate
   run:
-  - libgcc # [not osx]
-  - zlib
-  - bzip2
-  - curl
-  - xz
+    - libgcc # [not osx]
+    - bzip2 {{CONDA_BZIP2}}*
+    - curl
+    # Currently removed due to size and dependency issues
+    #- matplotlib # for plot-vcfstats
+    #- texlive-core # for plot-vcfstats
+    - xz {{CONDA_XZ}}*
+    - zlib {{CONDA_ZLIB}}*
+    - libdeflate
+
 source:
   fn: bcftools-{{ version }}.tar.bz2
   url: https://github.com/samtools/bcftools/releases/download/{{ version }}/bcftools-{{ version }}.tar.bz2
-  md5: 103729569ca3e265b13d2fed5775016e
+  sha256: 4acbfd691f137742e0be63d09f516434f0faf617a5c60f466140e0677915fced
+
 test:
   commands:
     - bcftools -h
     - bcftools --version
     - bcftools plugin -lv
+    #- plot-vcfstats -h 2>&1 | grep -q "Plots output of "
+
+extra:
+  identifiers:
+    - biotools:bcftools
+    - doi:10.1093/bioinformatics/btp352

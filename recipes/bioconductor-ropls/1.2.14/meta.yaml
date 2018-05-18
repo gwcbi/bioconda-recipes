@@ -12,9 +12,9 @@ build:
     - lib/
 requirements:
   build:
-    - r
+    - r-base
   run:
-    - r
+    - r-base
 test:
   commands:
     - '$R -e "library(''ropls'')"'
@@ -37,3 +37,7 @@ about:
     in Projection or regression coefficients). The package can be accessed via a user
     interface on the Workflow4Metabolomics.org online resource for computational metabolomics
     (built upon the Galaxy environment).'
+
+extra:
+  identifiers:
+    - biotools:ropls
