@@ -1,20 +1,19 @@
-{% set version = "0.38.0" %}
+{% set version = "1.0.0" %}
 
 package:
   name: nanoplotter
   version: {{ version }}
 
 source:
-  fn: nanoplotter-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/n/nanoplotter/nanoplotter-{{ version }}.tar.gz
-  sha256: 9016c201d65fcc84feaeafad1d0d629b9fb6d48630556a45123238ffc643cee4
+  sha256: 9629c321e44af28b2062c813c5a7c127c6ef0b86084d0b96233b86859ae17773
 
 build:
-  number: 0
+  number: 2
   skip: True  # [py27]
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
 
@@ -24,8 +23,8 @@ requirements:
     - numpy
     - scipy
     - matplotlib >=2.1.0
-    - seaborn >=0.8.1
-    - pauvre
+    - seaborn >=0.9.0
+    - pauvre ==0.1.86
     - statsmodels >=0.8.0
     - plotly >=2.5.1
 
